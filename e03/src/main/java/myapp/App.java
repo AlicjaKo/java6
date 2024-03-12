@@ -3,6 +3,7 @@ package myapp;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -12,36 +13,48 @@ final class App {
         // Utility class, no instantiation required
     }
 
-    public static List<Integer> generateNumbers() {
-        // TODO
+    public static List<Integer> generateNumbers() {    
+        return IntStream.rangeClosed(1, 100)
+                        .boxed()
+                        .collect(Collectors.toList());
+      
     }
 
     public static int sumOfAll(Stream<Integer> stream) {
-        // TODO
+        return stream.mapToInt(el -> el)
+                     .sum();
     }
 
     public static int sumOfEven(Stream<Integer> numbers) {
-        // TODO
+        return numbers.mapToInt(el -> el)
+                      .filter(el -> el%2==0)
+                      .sum();
     }
 
     public static int sumOfOdd(Stream<Integer> numbers) {
-        // TODO
+        return numbers.mapToInt(el -> el)
+                      .filter(el -> !(el%2==0))
+                      .sum();
     }
 
     public static double average(Stream<Integer> stream) {
-        // TODO
+        return stream.mapToDouble(el -> el)
+                     .average()
+                     .orElse(0);
     }
 
     public static int productOfEvenNumbers(Stream<Integer> stream) {
-        // TODO
+        return stream.mapToInt(el -> el)
+                     .filter(el -> el%2==0)
+                     .reduce(1, (a, b) -> a * b);
     }
 
     public static Optional<Integer> findLargest(Stream<Integer> stream) {
-        // TODO
+         return stream.max(Integer::compareTo);
     }
 
     public static Optional<Integer> findSmallest(Stream<Integer> stream) {
-        // TODO
+        return stream.min(Integer::compareTo);
     }
 
     public static void main(String[] args) {

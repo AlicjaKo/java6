@@ -1,23 +1,25 @@
 package myapp;
 
+import java.io.IOException;
+
 final class App {
-    private App() {
-        // Utility class, no instantiation required
-    }
-
     public static void main(final String[] args) {
+        Library library = new Library();
 
-        // Read the books from file
+        try {
+            library.readBooksFomFile();
+            System.out.println(library.size());
+            System.out.println(library.earliestYear());
+            System.out.println(library.latestYear());
+            System.out.println(library.search(2022));
+            System.out.println(library.titles());
+        
+        } catch (IOException e) {
+            e.printStackTrace(); 
+        }
+        
 
-        // Print the total number of books
-
-        // Find the earliest publication year
-
-        // Find the latest publication year
-
-        // Print the number of recent books
-
-        // Print the titles
+        
 
     }
 }
