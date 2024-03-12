@@ -13,7 +13,7 @@ public class Library {
     private List<Book> books = new ArrayList<>();
 
     public void readBooksFomFile() throws IOException {
-        try (Stream<String> st = Files.lines(Path.of("../../resources/books.txt"))) {
+        try (Stream<String> st = Files.lines(Path.of("../resources/books.txt"))) {
             st
             .map(line -> line.split(", "))
             .forEach(el -> {
